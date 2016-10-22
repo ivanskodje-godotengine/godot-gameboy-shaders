@@ -1,0 +1,16 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = { "fragment":"// Colors that we will use\nuniform color color_1 = vec4(0.784313725, 0.788235294, 0.262745098,1);\nuniform color color_2 = vec4(0.490196078, 0.521568627, 0.152941176, 1);\nuniform color color_3 = vec4(0, 0.415686275, 0, 1);\nuniform color color_4 = vec4(0.015686275, 0.243137255, 0, 1);\n\n// Color offset - changes threshold for color adjustments\nuniform float offset = 0.5;\n\n// Get pixel color from screen\ncolor pixel_color = vec4(texscreen(SCREEN_UV), 1);\n\n// Function to covert a pixel color into grayscale\nvec4 to_grayscale(vec4 pixcol)\n{\n\tfloat average = (pixcol.r + pixcol.g + pixcol.b) / 3;\n\treturn vec4(average, average, average, 1);\n}\n\n// Colorizes the grayscale pixel\nvec4 colorize(vec4 grayscale)\n{\n\t// The color we will return\n\tcolor new_color;\n\t\n\t// Color greater than 0 in value\?\n\tif(grayscale.r >= 0)\n\t{\n\t\t// Set darkest color 4\n\t\tnew_color = color_4;\n\t\t\t\t\n\t\t// Color greater than (default) 0.25 in value\? \n\t\tif(grayscale.r > offset * 0.5)\n\t\t{\n\t\t\t// Set dark color 3\n\t\t\tnew_color = color_3;\n\t\t\t\n\t\t\t// Color greater than (default) 0.50 in value\? \n\t\t\tif(grayscale.r > offset)\n\t\t\t{\n\t\t\t\t// Set bright color 2\n\t\t\t\tnew_color = color_2;\n\t\t\t\t\n\t\t\t\t// Color greater than (default) 0.75 in value\? \n\t\t\t\tif(grayscale.r > offset * 1.5)\n\t\t\t\t{\n\t\t\t\t\t// Set brightest color 1\n\t\t\t\t\tnew_color = color_1;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t}\n\t\n\t// Return the new color\n\treturn new_color;\n}\n\n// Set the pixel color we are going to use\nCOLOR = colorize(to_grayscale(pixel_color));", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/color_1 = Color( 0.0156863, 0.243137, 0, 1 )
+shader_param/color_2 = Color( 0, 0.415686, 0, 1 )
+shader_param/color_3 = Color( 0.490196, 0.521569, 0.152941, 1 )
+shader_param/color_4 = Color( 0.784314, 0.788235, 0.262745, 1 )
+shader_param/offset = 0.5
+

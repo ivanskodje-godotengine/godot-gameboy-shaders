@@ -1,0 +1,748 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://data/demo_menu/demo_menu.gd" type="Script" id=1]
+[ext_resource path="res://data/demo_menu/resources/info.png" type="Texture" id=2]
+[ext_resource path="res://data/demo_menu/resources/info_pressed.png" type="Texture" id=3]
+[ext_resource path="res://data/demo_menu/resources/visibility_mode.png" type="Texture" id=4]
+[ext_resource path="res://data/demo_menu/resources/visibility_mode_pressed.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+content_margin/left = 12.0
+content_margin/right = 12.0
+content_margin/top = 12.0
+content_margin/bottom = 12.0
+bg_color = Color( 1, 1, 1, 1 )
+light_color = Color( 0.539062, 0.539062, 0.539062, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 5
+border_blend = false
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0, 0, 1 )
+light_color = Color( 0, 0, 0, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 1
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = 12.0
+content_margin/right = 12.0
+content_margin/top = 12.0
+content_margin/bottom = 12.0
+bg_color = Color( 1, 1, 1, 1 )
+light_color = Color( 0.503906, 0.503906, 0.503906, 1 )
+dark_color = Color( 0, 0, 0, 1 )
+border_size = 5
+border_blend = false
+draw_bg = true
+
+[node name="demo_menu" type="Control"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 1 )
+gameboy_path = NodePath("../gameboy")
+four_colors_path = NodePath("../gameboy/shaders/4_colors/texture_frame_with_shader")
+gameboy_grid_path = NodePath("../gameboy/shaders/gameboy_grid/texture_frame_with_shader")
+four_colors_checkbox_path = NodePath("menu/panel/vbox/hbox_4_colors/check_box")
+grid_checkbox_path = NodePath("menu/panel/vbox/hbox_grid/check_box")
+four_colors_slider_path = NodePath("menu/panel/vbox/hbox_4_colors_offset/h_slider")
+grid_slider_path = NodePath("menu/panel/vbox/hbox_grid_brightness/h_slider")
+color_picker_1_path = NodePath("menu/panel/vbox/hbox_color_1/color_picker")
+color_picker_2_path = NodePath("menu/panel/vbox/hbox_color_2/color_picker")
+color_picker_3_path = NodePath("menu/panel/vbox/hbox_color_3/color_picker")
+color_picker_4_path = NodePath("menu/panel/vbox/hbox_color_4/color_picker")
+gameboy_border_path = NodePath("../gameboy_border")
+gameboy_border_color_picker_path = NodePath("menu/panel/vbox/hbox_border_color/color_picker")
+info_box_path = NodePath("info_box")
+info_button_path = NodePath("menu/info_button")
+info_text_edit_path = NodePath("info_box/panel/vbox/hbox_info_text/text_edit")
+copy_link_button_path = NodePath("info_box/panel/vbox/center_container_copy/link_button")
+visibility_button_path = NodePath("menu/visibility_button")
+
+[node name="menu" type="Node2D" parent="."]
+
+[node name="panel" type="PanelContainer" parent="menu"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 146.0
+margin/bottom = 270.0
+custom_styles/panel = SubResource( 1 )
+
+[node name="vbox" type="VBoxContainer" parent="menu/panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 12.0
+margin/top = 12.0
+margin/right = 134.0
+margin/bottom = 258.0
+alignment = 0
+
+[node name="hbox_title" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 14.0
+alignment = 1
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_title"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 19.0
+margin/top = 0.0
+margin/right = 102.0
+margin/bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "DEMO MENU"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="h_separator_1" type="HSeparator" parent="menu/panel/vbox"]
+
+rect/min_size = Vector2( 100, 5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 122.0
+margin/bottom = 23.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="hbox_grid" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 27.0
+margin/right = 122.0
+margin/bottom = 50.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_grid"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 57.0
+margin/top = 4.0
+margin/right = 92.0
+margin/bottom = 18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Grid: "
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_box" type="CheckBox" parent="menu/panel/vbox/hbox_grid"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 96.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="hbox_grid_brightness" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 54.0
+margin/right = 122.0
+margin/bottom = 70.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_grid_brightness"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 1.0
+margin/right = 68.0
+margin/bottom = 15.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Brightness"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="h_slider" type="HSlider" parent="menu/panel/vbox/hbox_grid_brightness"]
+
+rect/min_size = Vector2( 50, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 72.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 16.0
+range/min = 0.5
+range/max = 2.0
+range/step = 0.01
+range/page = 0.0
+range/value = 0.5
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="h_separator_2" type="HSeparator" parent="menu/panel/vbox"]
+
+rect/min_size = Vector2( 100, 5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 74.0
+margin/right = 122.0
+margin/bottom = 79.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="hbox_4_colors" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 83.0
+margin/right = 122.0
+margin/bottom = 106.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_4_colors"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 36.0
+margin/top = 4.0
+margin/right = 92.0
+margin/bottom = 18.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "4 Colors:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="check_box" type="CheckBox" parent="menu/panel/vbox/hbox_4_colors"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 96.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="hbox_4_colors_offset" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 110.0
+margin/right = 122.0
+margin/bottom = 126.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_4_colors_offset"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 25.0
+margin/top = 1.0
+margin/right = 68.0
+margin/bottom = 15.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Offset:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="h_slider" type="HSlider" parent="menu/panel/vbox/hbox_4_colors_offset"]
+
+rect/min_size = Vector2( 50, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 72.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 16.0
+range/min = -0.1
+range/max = 2.0
+range/step = 0.01
+range/page = 0.0
+range/value = 0.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = false
+focus_mode = 2
+
+[node name="hbox_color_1" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 130.0
+margin/right = 122.0
+margin/bottom = 150.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_color_1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 53.0
+margin/top = 3.0
+margin/right = 98.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Color 1"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="color_picker" type="ColorPickerButton" parent="menu/panel/vbox/hbox_color_1"]
+
+rect/min_size = Vector2( 20, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 102.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="hbox_color_2" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 154.0
+margin/right = 122.0
+margin/bottom = 174.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_color_2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 53.0
+margin/top = 3.0
+margin/right = 98.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Color 2"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="color_picker" type="ColorPickerButton" parent="menu/panel/vbox/hbox_color_2"]
+
+rect/min_size = Vector2( 20, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 102.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="hbox_color_3" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 178.0
+margin/right = 122.0
+margin/bottom = 198.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_color_3"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 53.0
+margin/top = 3.0
+margin/right = 98.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Color 3"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="color_picker" type="ColorPickerButton" parent="menu/panel/vbox/hbox_color_3"]
+
+rect/min_size = Vector2( 20, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 102.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="hbox_color_4" type="HBoxContainer" parent="menu/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 202.0
+margin/right = 122.0
+margin/bottom = 222.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_color_4"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 53.0
+margin/top = 3.0
+margin/right = 98.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Color 4"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="color_picker" type="ColorPickerButton" parent="menu/panel/vbox/hbox_color_4"]
+
+rect/min_size = Vector2( 20, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 102.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="hbox_border_color" type="HBoxContainer" parent="menu/panel/vbox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 226.0
+margin/right = 122.0
+margin/bottom = 246.0
+alignment = 2
+
+[node name="label" type="Label" parent="menu/panel/vbox/hbox_border_color"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 55.0
+margin/top = 3.0
+margin/right = 98.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Border"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="color_picker" type="ColorPickerButton" parent="menu/panel/vbox/hbox_border_color"]
+
+rect/min_size = Vector2( 20, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 102.0
+margin/top = 0.0
+margin/right = 122.0
+margin/bottom = 20.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+color = Color( 1, 1, 1, 1 )
+edit_alpha = true
+
+[node name="info_button" type="TextureButton" parent="menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 19.0
+margin/top = 221.0
+margin/right = 51.0
+margin/bottom = 253.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 2 )
+textures/pressed = ExtResource( 3 )
+
+[node name="visibility_button" type="TextureButton" parent="menu"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 19.0
+margin/top = 182.0
+margin/right = 51.0
+margin/bottom = 214.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 4 )
+textures/pressed = ExtResource( 5 )
+
+[node name="info_box" type="Node2D" parent="."]
+
+editor/display_folded = true
+visibility/visible = false
+transform/pos = Vector2( -0.0044136, 269.88 )
+
+[node name="panel" type="PanelContainer" parent="info_box"]
+
+editor/display_folded = true
+rect/min_size = Vector2( 319, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 319.0
+margin/bottom = 334.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="vbox" type="VBoxContainer" parent="info_box/panel"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 12.0
+margin/top = 12.0
+margin/right = 307.0
+margin/bottom = 324.0
+alignment = 0
+
+[node name="hbox_title" type="HBoxContainer" parent="info_box/panel/vbox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 295.0
+margin/bottom = 14.0
+alignment = 1
+
+[node name="label" type="Label" parent="info_box/panel/vbox/hbox_title"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 104.0
+margin/top = 0.0
+margin/right = 191.0
+margin/bottom = 14.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "DATA VALUES"
+align = 2
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="hbox_info_text" type="HBoxContainer" parent="info_box/panel/vbox"]
+
+editor/display_folded = true
+rect/min_size = Vector2( 166, 270 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 18.0
+margin/right = 295.0
+margin/bottom = 288.0
+alignment = 0
+
+[node name="text_edit" type="TextEdit" parent="info_box/panel/vbox/hbox_info_text"]
+
+rect/min_size = Vector2( 295, 180 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 295.0
+margin/bottom = 270.0
+custom_colors/selection_color = Color( 0.511719, 0.511719, 0.511719, 1 )
+custom_colors/font_color_selected = Color( 0.589844, 0.589844, 0.589844, 1 )
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+caret/block_caret = false
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="center_container_copy" type="CenterContainer" parent="info_box/panel/vbox"]
+
+editor/display_folded = true
+rect/min_size = Vector2( 0, 20 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 292.0
+margin/right = 295.0
+margin/bottom = 312.0
+use_top_left = false
+
+[node name="link_button" type="LinkButton" parent="info_box/panel/vbox/center_container_copy"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 91.0
+margin/top = 3.0
+margin/right = 203.0
+margin/bottom = 17.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0.523438, 0.523438, 0.523438, 1 )
+custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
+toggle_mode = false
+enabled_focus_mode = 0
+shortcut = null
+text = "Copy to Clipboard"
+
+

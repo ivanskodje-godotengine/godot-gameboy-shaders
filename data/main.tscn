@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://data/demo_menu/demo_menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://shaders/4_colors/4_colors.tres" type="CanvasItemMaterial" id=2]
+[ext_resource path="res://shaders/4_colors/black.png" type="Texture" id=3]
+[ext_resource path="res://shaders/gameboy_grid/gameboy_grid.tres" type="CanvasItemMaterial" id=4]
+[ext_resource path="res://shaders/gameboy_grid/grid_pattern.png" type="Texture" id=5]
+[ext_resource path="res://data/white_border.png" type="Texture" id=6]
+
+[node name="main" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="add_game_or_image_here2" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 16.0
+margin/right = 816.0
+margin/bottom = 736.0
+stretch_mode = 3
+
+[node name="demo_menu" parent="." instance=ExtResource( 1 )]
+
+margin/left = 16.0
+margin/top = 16.0
+margin/right = 16.0
+margin/bottom = 16.0
+gameboy_border_path = NodePath("../gameboy/gameboy_border")
+
+[node name="gameboy" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, 1 )
+
+[node name="shaders" type="Node2D" parent="gameboy"]
+
+editor/display_folded = true
+
+[node name="4_colors" type="BackBufferCopy" parent="gameboy/shaders"]
+
+editor/display_folded = true
+copy_mode = 0
+rect = Rect2( 0, 0, 100, 100 )
+
+[node name="texture_frame_with_shader" type="TextureFrame" parent="gameboy/shaders/4_colors"]
+
+material/material = ExtResource( 2 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = -715.0
+margin/bottom = -635.0
+texture = ExtResource( 3 )
+stretch_mode = 2
+
+[node name="gameboy_grid" type="BackBufferCopy" parent="gameboy/shaders"]
+
+editor/display_folded = true
+copy_mode = 2
+rect = Rect2( 0, 0, 200, 200 )
+
+[node name="texture_frame_with_shader" type="TextureFrame" parent="gameboy/shaders/gameboy_grid"]
+
+material/material = ExtResource( 4 )
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 15.0
+margin/top = 15.0
+margin/right = -615.0
+margin/bottom = -535.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+
+[node name="gameboy_border" type="TextureFrame" parent="gameboy"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = -1.0
+margin/right = 832.0
+margin/bottom = 751.0
+texture = ExtResource( 6 )
+modulate = Color( 0.886275, 0.890196, 0.298039, 1 )
+stretch_mode = 3
+
+[node name="delete_me" type="Label" parent="."]
+
+rect/scale = Vector2( 2, 2 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 1.0
+margin/top = 761.0
+margin/right = 421.0
+margin/bottom = 911.0
+text = "The help menu will assist you in figuring out how to manipulate shader \nvalues from GDScript. \n\nYou can also use it in your game to discover the best settings, \nwithout having to run/stop the game over and over :)\n\nEnjoy !\n\n- Ivan Skodje"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+

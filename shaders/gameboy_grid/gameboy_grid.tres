@@ -1,0 +1,12 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=1]
+
+[sub_resource type="CanvasItemShader" id=1]
+
+_code = { "fragment":"// Brightness (less than 1 is darker, above 1 is brighter)\nuniform float brightness = 1.13;\n\n// Get pixel color from screen\ncolor pixel_color = vec4(texscreen(SCREEN_UV), 1);\n\n// Get pixel color from texture (set on the TextureFrame)\nvec4 grid_pixel_color = tex(TEXTURE, UV);\n\n// If the pixel color from our grid image is dark, set it to be fully transparent\nif(grid_pixel_color.r < 0.5)\n{\n\tCOLOR = vec4(1,1,1,0); // (red, green, blue, alpha-transparency)\n}\n// Since it is NOT dark, we adjust the pixel color brightness\nelse\n{\n\tCOLOR = pixel_color * brightness;\n}", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+
+[resource]
+
+shader/shader = SubResource( 1 )
+shader/shading_mode = 0
+shader_param/brightness = 1.12
+
